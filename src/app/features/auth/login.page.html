@@ -1,0 +1,20 @@
+<section class="auth-card">
+  <p class="eyebrow">EVENTQR</p>
+  <h1>Bienvenido de nuevo</h1>
+  @if (!auth.configured) {
+  <p class="notice" role="status">
+    Supabase todavía no está configurado. Completá la URL y la publishable key
+    en <code>src/environments/environment.ts</code> para usar el acceso.
+  </p>
+  } @if (error()) {
+  <p class="notice error" role="alert">{{ error() }}</p>
+  }
+  <app-auth-form
+    [configured]="auth.configured"
+    [pending]="pending()"
+    (submitted)="submit($event)"
+  />
+  <p class="auth-switch">
+    ¿Todavía no tenés cuenta? <a routerLink="/register">Registrarme</a>
+  </p>
+</section>

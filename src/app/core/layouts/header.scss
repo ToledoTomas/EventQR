@@ -1,0 +1,36 @@
+.site-header {
+  background: #fff;
+  border-bottom: 1px solid #dce4d9;
+}
+.header-inner {
+  min-height: 76px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+.brand {
+  font-size: 1.45rem;
+  font-weight: 800;
+  letter-spacing: -0.05em;
+  text-decoration: none;
+}
+.brand span {
+  color: #ac5c31;
+}
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem;
+}
+nav .active {
+  background: #e7eee4;
+}
+@media (max-width: 650px) {
+  .header-inner {
+    align-items: flex-start;
+    flex-direction: column;
+    padding-block: 1rem;
+  }
+}

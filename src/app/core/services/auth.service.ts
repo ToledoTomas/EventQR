@@ -1,8 +1,8 @@
-import { inject, Injectable, signal } from '@angular/core';
-import { Session } from '@supabase/supabase-js';
-import { SUPABASE } from '../config/supabase';
+import { inject, Injectable, signal } from "@angular/core";
+import { Session } from "@supabase/supabase-js";
+import { SUPABASE } from "../config/supabase";
 
-@Injectable({ providedIn: 'root' })
+@Injectable({ providedIn: "root" })
 export class AuthService {
   private readonly client = inject(SUPABASE);
   readonly configured = this.client !== null;
@@ -16,20 +16,29 @@ export class AuthService {
       this.loading.set(false);
       return;
     }
-    this.client.auth.onAuthStateChange((_event, session) => this.session.set(session));
-    this.ready = this.client.auth.getSession().then(({ data, error }) => {
-      if (!error) this.session.set(data.session);
-    }).finally(() => this.loading.set(false));
+    this.client.auth.onAuthStateChange((_event, session) =>
+      this.session.set(session),
+    );
+    this.ready = this.client.auth
+      .getSession()
+      .then(({ data, error }) => {
+        if (!error) this.session.set(data.session);
+      })
+      .finally(() => this.loading.set(false));
   }
 
   async signIn(email: string, password: string): Promise<void> {
-    if (!this.client) throw new Error('Configurá Supabase para iniciar sesión.');
-    const { error } = await this.client.auth.signInWithPassword({ email, password });
+    if (!this.client)
+      throw new Error("Configurá Supabase para iniciar sesión.");
+    const { error } = await this.client.auth.signInWithPassword({
+      email,
+      password,
+    });
     if (error) throw error;
   }
 
   async signUp(email: string, password: string): Promise<boolean> {
-    if (!this.client) throw new Error('Configurá Supabase para registrarte.');
+    if (!this.client) throw new Error("Configurá Supabase para registrarte.");
     const { data, error } = await this.client.auth.signUp({ email, password });
     if (error) throw error;
     return data.session === null;

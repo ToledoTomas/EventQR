@@ -1,0 +1,22 @@
+.auth-card {
+  width: min(100%, 440px);
+  margin: 5rem auto;
+  padding: 2rem;
+  background: #fff;
+  border: 1px solid #e2e8df;
+  border-radius: 18px;
+  box-shadow: 0 14px 40px #20332d0d;
+}
+h1 {
+  font-size: 2.3rem;
+}
+.auth-switch {
+  margin-bottom: 0;
+  text-align: center;
+}
+@media (max-width: 650px) {
+  .auth-card {
+    margin-block: 2rem;
+    padding: 1.4rem;
+  }
+}

@@ -1,0 +1,36 @@
+<header class="site-header">
+  <div class="shell header-inner">
+    <a class="brand" routerLink="/dashboard" aria-label="EventQR, panel"
+      >Event<span>QR</span></a
+    >
+    <nav aria-label="Navegación del organizador">
+      <a
+        mat-button
+        routerLink="/dashboard"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        >Inicio</a
+      >
+      <a mat-button routerLink="/dashboard/events" routerLinkActive="active"
+        >Eventos</a
+      >
+      <a mat-button routerLink="/dashboard/check-in" routerLinkActive="active"
+        >Check-in</a
+      >
+      <button
+        mat-button
+        type="button"
+        [disabled]="signingOut()"
+        (click)="logout()"
+      >
+        Salir
+      </button>
+    </nav>
+  </div>
+</header>
+<main class="shell">
+  @if (logoutError()) {
+  <p class="notice error" role="alert">{{ logoutError() }}</p>
+  }
+  <router-outlet />
+</main>

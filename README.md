@@ -37,11 +37,11 @@ La configuración local está en `supabase/config.toml`. Las futuras migraciones
 
 ## Comandos
 
-| Comando | Uso |
-| --- | --- |
-| `npm start` | Servidor de desarrollo |
-| `npm run build` | Build de producción |
-| `npm run lint` | Angular ESLint |
+| Comando           | Uso                             |
+| ----------------- | ------------------------------- |
+| `npm start`       | Servidor de desarrollo          |
+| `npm run build`   | Build de producción             |
+| `npm run lint`    | Angular ESLint                  |
 | `npm run test:ci` | Pruebas Vitest, ejecución única |
 
 En el entorno restringido usado para preparar este Sprint 0, `ng test` y `ng serve` pueden fallar antes de ejecutar código con `Cannot read directory "../../..": Access is denied` al resolver rutas del workspace. `ng build`, `ng lint` y el chequeo TypeScript de los tests sí se pudieron ejecutar. Probá `npm run test:ci` y `npm start` en una terminal local con acceso normal al sistema de archivos.
@@ -49,6 +49,12 @@ En el entorno restringido usado para preparar este Sprint 0, `ng test` y `ng ser
 ## Rutas
 
 Públicas: `/`, `/login`, `/register`, `/events/:slug` y página 404. Privadas: `/dashboard`, `/dashboard/events`, `/dashboard/events/new` y `/dashboard/check-in`.
+
+## Organización del código
+
+- `core/config` crea el cliente de Supabase; `core/services` concentra la sesión y las operaciones de Auth; `core/guards` decide el acceso a rutas privadas.
+- `core/layouts` contiene la navegación pública y privada. `features` agrupa las páginas por funcionalidad y `shared/ui` guarda UI común.
+- Los componentes usan archivos `.ts` para estado y acciones, `.html` para presentación y `.scss` para estilos propios. Login y registro son páginas separadas; ambas reutilizan el formulario de credenciales.
 
 ## Alcance pendiente
 

@@ -1,0 +1,35 @@
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <mat-form-field appearance="outline">
+    <mat-label>Correo electrónico</mat-label>
+    <input
+      matInput
+      type="email"
+      autocomplete="email"
+      formControlName="email"
+      required
+    />
+    @if (form.controls.email.invalid && form.controls.email.touched) {
+      <mat-error>Ingresá un correo válido.</mat-error>
+    }
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Contraseña</mat-label>
+    <input
+      matInput
+      type="password"
+      [attr.autocomplete]="register() ? 'new-password' : 'current-password'"
+      formControlName="password"
+      required
+    />
+    @if (form.controls.password.invalid && form.controls.password.touched) {
+      <mat-error>La contraseña debe tener al menos 6 caracteres.</mat-error>
+    }
+  </mat-form-field>
+  <button
+    mat-flat-button
+    type="submit"
+    [disabled]="form.invalid || pending() || !configured()"
+  >
+    {{ pending() ? "Enviando…" : register() ? "Crear cuenta" : "Ingresar" }}
+  </button>
+</form>

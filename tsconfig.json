@@ -17,5 +17,9 @@
     "lib": ["ES2022", "dom"],
     "types": []
   },
-  "angularCompilerOptions": { "strictInjectionParameters": true, "strictInputAccessModifiers": true, "strictTemplates": true }
+  "angularCompilerOptions": {
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": true
+  }
 }
